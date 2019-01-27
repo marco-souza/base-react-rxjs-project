@@ -1,0 +1,16 @@
+{
+  "name": "base-react-rxjs-project",
+  "version": "1.0.0",
+  "description": "A simple bootstrap project to use React, Redux and RxJS to a full SPA.",
+  "main": "dist/index.html",
+  "repository": "git@github.com:marco-souza/base-react-rxjs-project.git",
+  "author": "Marco Antônio <ma.souza.junior@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-typescript": "^7.1.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  }
+}
