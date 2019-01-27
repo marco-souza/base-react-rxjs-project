@@ -6,5 +6,5 @@ const config = {
   mode: 'production',
 }
 
-console.log(app);
+
 export default config

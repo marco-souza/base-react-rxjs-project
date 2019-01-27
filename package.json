@@ -7,7 +7,8 @@
   "author": "Marco Antônio <ma.souza.junior@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack -f webpack.config.babel.js --progress -p"
+    "start": "NODE_ENV=development webpack -f webpack.config.babel.js --progress -p",
+    "start:prod": "NODE_ENV=production webpack -f webpack.config.babel.js --progress -p"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

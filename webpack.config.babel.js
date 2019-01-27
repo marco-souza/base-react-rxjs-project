@@ -13,5 +13,5 @@ const config = prodEnvs.includes(environment)
   ? require('./webpack/prod')
   : require('./webpack/dev')
 
-console.log(config);
+
 export default config
