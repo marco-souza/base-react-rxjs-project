@@ -7,10 +7,14 @@
   "author": "Marco Antônio <ma.souza.junior@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development webpack -f webpack.config.babel.js --progress -p",
     "start:dev": "NODE_ENV=development webpack-dev-server --open --config webpack.config.babel.js",
-    "start:watch": "NODE_ENV=development webpack -f webpack.config.babel.js --progress -p --watch",
-    "start:prod": "NODE_ENV=production webpack -f webpack.config.babel.js --progress -p"
+    "start:watch": "NODE_ENV=development webpack -f webpack.config.babel.js --progress --watch",
+    "start": "yarn start",
+    "build:analyze": "BUNDLE_ANALYZE=true NODE_ENV=production webpack -f webpack.config.babel.js --progress",
+    "build:prod": "NODE_ENV=production webpack -f webpack.config.babel.js --progress -p",
+    "build:dev": "NODE_ENV=development webpack -f webpack.config.babel.js --progress",
+    "build": "yarn build:prod",
+    "update": "rm -rf node_modules yarn.lock; yarn"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -35,6 +39,7 @@
     "pug-loader": "^2.4.0",
     "terser-webpack-plugin": "^1.2.1",
     "webpack": "^4.29.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"

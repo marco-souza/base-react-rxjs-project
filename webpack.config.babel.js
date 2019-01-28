@@ -1,4 +1,5 @@
 import merge from 'webpack-merge'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 // Production Environments
 const prodEnvironments = [
@@ -7,17 +8,17 @@ const prodEnvironments = [
 ]
 
 
-// Define which webpapck conffg use, dev or prod
+// Define which webpack config use, dev or prod
 const environment = process.env.NODE_ENV || 'development'
-const webpackConfig = prodEnvironments.includes(environment)
+const { config: webpackConfig } = prodEnvironments.includes(environment)
   ? require('./webpack/prod')
   : require('./webpack/dev')
 
 
 let plugins = []
-// if (process.env.BUNDLE_ANALYZE == "true") {
-//   plugins.push(new BundleAnalyzerPlugin())
-// };
+if (process.env.BUNDLE_ANALYZE === 'true') {
+  plugins.push(new BundleAnalyzerPlugin())
+};
 
 
 const config = merge(

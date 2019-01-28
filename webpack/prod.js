@@ -6,4 +6,4 @@ const config = merge(baseConfig, {
 })
 
 
-export default config
+export { config }
