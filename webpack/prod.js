@@ -1,10 +1,9 @@
+import merge from 'webpack-merge'
 import baseConfig from './base'
-import { app } from '../filepaths'
 
-const config = {
-  ...baseConfig,
+const config = merge(baseConfig, {
   mode: 'production',
-}
+})
 
 
 export default config
