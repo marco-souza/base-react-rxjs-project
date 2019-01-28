@@ -3,6 +3,7 @@ import Happypack from 'happypack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
+import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
 
 import * as filepaths from '../filepaths'
 const { app } = filepaths
@@ -48,6 +49,9 @@ const config = {
 
   // Plugins
   plugins: [
+    new ServiceWorkerWebpackPlugin({
+      entry: app.workers.main,
+    }),
     new Happypack({
       loaders: [
         { loader: 'babel-loader' },
@@ -60,6 +64,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: app.html,
     }),
+    // Avoid to import React to use JSX syntax
     new webpack.ProvidePlugin({
       'React': 'react',
     }),

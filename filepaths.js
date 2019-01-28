@@ -15,6 +15,9 @@ const app = {
     absPath('src'),
     'node_modules',
   ],
+  workers: {
+    main: absPath('src/workers/index.js'),
+  },
 }
 
 
