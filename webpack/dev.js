@@ -1,5 +1,9 @@
+import webpack from 'webpack'
 import merge from 'webpack-merge'
 import baseConfig from './base'
+
+import { app } from '../filepaths'
+
 
 const config = merge(baseConfig, {
   mode: 'development',
@@ -11,6 +15,17 @@ const config = merge(baseConfig, {
   watchOptions: {
     ignored: /node_modules/,
   },
+  devServer: {
+    contentBase: app.dest,
+    watchContentBase: true,
+    compress: true,
+    port: 9000,
+    hot: true,
+    open: true,
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 })
 
 
