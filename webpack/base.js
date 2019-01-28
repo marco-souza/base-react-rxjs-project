@@ -1,6 +1,8 @@
+import webpack from 'webpack'
 import Happypack from 'happypack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 
 import * as filepaths from '../filepaths'
 const { app } = filepaths
@@ -15,8 +17,7 @@ const config = {
   // Output format
   output: {
     path: app.dest,
-    publicPath: app.root,
-    filename: '[name].[contenthash].js',
+    filename: '[name].[hash].js',
   },
 
   // Resolve path
@@ -59,7 +60,33 @@ const config = {
     new HtmlWebpackPlugin({
       template: app.html,
     }),
+    new webpack.ProvidePlugin({
+      'React': 'react',
+    }),
   ],
+
+  // Optimizations
+  optimization: {
+    removeAvailableModules: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      hidePathInfo: false,
+      minSize: 10000,
+      maxAsyncRequests: Infinity,
+      maxInitialRequests: Infinity,
+      cacheGroups: {
+        vendors: {
+          test: /node_modules/,
+        },
+      },
+    },
+  },
 }
 
 
