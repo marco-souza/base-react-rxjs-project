@@ -1,13 +1,19 @@
 import ReactDOM from 'react-dom'
 import runtime from 'serviceworker-webpack-plugin/lib/runtime'
+import Home from './screens/home'
+
 
 // Bootstrap component
 const Bootstrap = (name = 'world') => {
+  // register Service Workers
   if ('serviceWorker' in navigator) {
     runtime.register()
   }
+
   return (
-    <h1>Hello, {name}!</h1>
+    <div>
+      <Home name={name} />
+    </div>
   )
 }
 
