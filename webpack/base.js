@@ -1,6 +1,8 @@
 import webpack from 'webpack'
+
 import Happypack from 'happypack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
@@ -64,6 +66,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: app.html,
     }),
+    // Copy Assets
+    new CopyPlugin(app.copyAssets),
     // Avoid to import React to use JSX syntax
     new webpack.ProvidePlugin({
       'React': 'react',

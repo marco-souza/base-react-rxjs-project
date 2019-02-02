@@ -18,6 +18,10 @@ const app = {
   workers: {
     main: absPath('src/workers/index.js'),
   },
+  copyAssets: [
+    { from: './src/assets/fonts/*.css',
+      to: './assets/[name].css' },
+  ],
 }
 
 
