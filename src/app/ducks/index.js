@@ -1,21 +1,22 @@
+/**
+ * This file should setup an the redux store, so each new duck should be added
+ * to **initialState** and **reducers** to allow it's actions to change state.
+ */
 import { createStore, combineReducers, compose } from 'redux'
 
-// Import reducers
-import {
-  reducer as user,
-  InitialState as UserInitialState,
-} from 'app/ducks/user'
+// Import ducks definitions
+import * as user from './user'
 
 
-// Set general initial state
-const InitialState = {
-  user: UserInitialState,
+// Setup Store initial state
+const initialState = {
+  user: user.INITIAL_STATE,
 }
 
 
-// Compine all reducers
+// Compine all ducks reducers - (receive state + action, return new state)
 const reducers = combineReducers({
-  user,
+  user: user.reducer,
 })
 
 
@@ -25,7 +26,7 @@ export const STORE = createStore(
   // Add reducers
   reducers,
   // Set initial state
-  InitialState,
+  initialState,
   // Apply enhancements
   composeEnhancers(),
 )
