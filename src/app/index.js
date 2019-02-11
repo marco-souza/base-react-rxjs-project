@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import runtime from 'serviceworker-webpack-plugin/lib/runtime'
+import { STORE } from 'app/ducks'
 import Home from './screens/home'
 
 
@@ -11,14 +13,14 @@ const Bootstrap = (name = 'world') => {
   }
 
   return (
-    <div>
-      <Home name={name} />
-    </div>
+    <Provider store={STORE}>
+      <Home />
+    </Provider>
   )
 }
 
 // Bind component to DOM
 ReactDOM.render(
-  Bootstrap('Webpack'),
+  Bootstrap(),
   document.getElementById('root')
 )
