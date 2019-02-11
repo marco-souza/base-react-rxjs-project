@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
 import {
-  ActionCreator,
   reducer,
-  InitialState,
+  actions,
+  INITIAL_STATE,
 } from './duck'
 
 
 /**
- * Maps
+ * Maps to put actions and states as props of a component
  */
 
-// Map Store to props
+// Map user slice of Store to props
 const mapStateToProps = state => {
   const { user } = state
   return { ...user }
@@ -19,10 +19,10 @@ const mapStateToProps = state => {
 // Map actions to Props
 const mapDispatchToProps = (dispatch, ownProps) => ({
   changeName (data) {
-    dispatch(ActionCreator.changeName(data))
+    dispatch(actions.changeName(data))
   },
   changePhoto (data) {
-    dispatch(ActionCreator.changePhoto(data))
+    dispatch(actions.changePhoto(data))
   },
 })
 
@@ -31,5 +31,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(mapStateToProps, mapDispatchToProps)
 export {
   reducer,
-  InitialState,
+  INITIAL_STATE,
 }
