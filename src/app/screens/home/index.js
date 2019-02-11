@@ -21,14 +21,15 @@ const Component = (props) => {
               Name {props.name} <br/>
               Photo: {props.photo}
               <AccessAlarmIcon /><br/>
-
-              <Input
-                onChange={event => props.changeName(event.target.value)}
-              />
-              <Input
-                onChange={event => props.changePhoto(event.target.value)}
-              />
             </Typography>
+
+            <Input
+              onChange={event => props.changeName(event.target.value)}
+            />
+            <Input
+              onChange={event => props.changePhoto(event.target.value)}
+            />
+
           </Paper>
 
 
