@@ -13,7 +13,6 @@ import * as filepaths from '../filepaths'
 const { app } = filepaths
 
 
-
 const config = {
   // App entry point
   entry: {
