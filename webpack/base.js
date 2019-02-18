@@ -6,9 +6,12 @@ import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
+import WebpackPwaManifest from 'webpack-pwa-manifest'
 
+import manifest from '../src/app/manifest'
 import * as filepaths from '../filepaths'
 const { app } = filepaths
+
 
 
 const config = {
@@ -54,6 +57,7 @@ const config = {
     new ServiceWorkerWebpackPlugin({
       entry: app.workers.main,
     }),
+    new WebpackPwaManifest(manifest),
     new Happypack({
       loaders: [
         { loader: 'babel-loader' },
