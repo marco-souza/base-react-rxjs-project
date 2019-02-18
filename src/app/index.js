@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import runtime from 'serviceworker-webpack-plugin/lib/runtime'
-import { STORE } from 'app/ducks'
+import { configureStore } from 'app/ducks'
 import Home from './screens/home'
 
 
@@ -12,8 +12,10 @@ const Bootstrap = (name = 'world') => {
     runtime.register()
   }
 
+  const store = configureStore()
+
   return (
-    <Provider store={STORE}>
+    <Provider store={store}>
       <Home />
     </Provider>
   )
