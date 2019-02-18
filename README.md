@@ -8,7 +8,9 @@ It's uses React, Material UI, Redux and RxJS.
 
 - [x] Add **Material UI**
 - [x] Add **Redux** and **Ducks**
-- [ ] Add observers for API and Data (**RxJS**)
+- [x] Add observers for API and Data (**RxJS**)
 - [ ] Add **Tests**
   - [ ] Jest
   - [ ] RxJS tests
+- [ ] Add CI
+- [ ] Try to persist state (redux-persist)
