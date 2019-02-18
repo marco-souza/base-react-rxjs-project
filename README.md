@@ -14,3 +14,6 @@ It's uses React, Material UI, Redux and RxJS.
   - [ ] RxJS tests
 - [ ] Add CI
 - [ ] Try to persist state (redux-persist)
+- [ ] Service Workers
+  - [ ] Persist assets offline
+- [ ] Create a manifet.json to make a PWA
