@@ -1,6 +1,7 @@
-import logo from './images/logo.png'
+import path from 'path'
 
 
+const logo = path.resolve('src/assets/images/logo.png')
 const manifest = {
   filename: 'manifest.json',
   name: 'My Progressive Web App',
