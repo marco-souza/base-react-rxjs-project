@@ -3,7 +3,9 @@ import {
   debounceTime,
   map,
   mergeMap,
+  catchError,
 } from 'rxjs/operators'
+import { of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 import { ofType, combineEpics } from 'redux-observable'
 // #endregion
@@ -47,7 +49,8 @@ const fetchProfileEpic = (action$, state$) => action$.pipe(
   debounceTime(1000), // debounce to avoid multiple loads
   mergeMap(action =>
     ajax.getJSON(`https://api.github.com/users/${action.payload}`).pipe(
-      map(response => actions.fetchProfileFufilled(response))
+      map(response => actions.fetchProfileFufilled(response)),
+      catchError(() => of(actions.fetchProfileFufilled(null))),
     )
   ),
 )
