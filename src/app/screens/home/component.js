@@ -21,6 +21,7 @@ const Component = (props) => (
           </Typography>
 
           <Input
+            value={props.name}
             onChange={event => props.changeName(event.target.value)}
           />
           <Input
