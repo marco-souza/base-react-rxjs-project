@@ -10,12 +10,22 @@ It's uses React, Material UI, Redux and RxJS.
 - [x] Add **Redux** and **Ducks**
 - [x] Add observers for API and Data (**RxJS**)
 - [x] Try to persist state (redux-persist)
-- PWA [ ]
+- PWA [x]
   - [x] Create a manifet.json to make a PWA
   - [x] Service Workers
     - [x] Persist assets offline
-  - [ ] Audits fixes
+  - [x] Audits fixes
 - [ ] Add CI
 - [ ] Add **Tests**
   - [ ] Jest
   - [ ] RxJS tests
+- [ ] Add favicon
+
+
+## Personalize
+
+- change favicon
+- PWA
+  - change logo
+  - change name
+  - change desc
