@@ -9,6 +9,7 @@ const app = {
   main: [
     absPath('src/app/index.js'),
   ],
+  logo: absPath('src/assets/images/logo.png'),
   html: absPath('src/app/index.pug'),
   dest: absPath('dist'),
   resolve: [

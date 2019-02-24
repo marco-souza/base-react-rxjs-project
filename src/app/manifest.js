@@ -1,7 +1,6 @@
-import path from 'path'
+import { app } from '../../filepaths'
 
 
-const logo = path.resolve('src/assets/images/logo.png')
 const manifest = {
   filename: 'manifest.json',
   name: 'My Progressive Web App',
@@ -11,7 +10,7 @@ const manifest = {
   theme_color: '#449922',
   crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
   icons: {
-    src: logo,
+    src: app.logo,
     sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
   },
   // {
