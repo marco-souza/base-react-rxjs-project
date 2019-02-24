@@ -19,8 +19,7 @@ It's uses React, Material UI, Redux and RxJS.
 - [ ] Add **Tests**
   - [ ] Jest
   - [ ] RxJS tests
-- [ ] Add favicon
-
+- [x] Add favicon
 
 ## Personalize
 
