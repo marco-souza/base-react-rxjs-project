@@ -6,7 +6,6 @@ import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
-import OfflinePlugin from 'offline-plugin'
 import WebpackPwaManifest from 'webpack-pwa-manifest'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
@@ -58,9 +57,6 @@ const config = {
     new CleanWebpackPlugin([ app.dest ], {
       root: app.root,
     }),
-    new ServiceWorkerWebpackPlugin({
-      entry: app.workers.main,
-    }),
     new WebpackPwaManifest(manifest),
     new Happypack({
       loaders: [
@@ -79,8 +75,11 @@ const config = {
     new webpack.ProvidePlugin({
       'React': 'react',
     }),
-    // Make Offline app
-    new OfflinePlugin(),
+    // Service Workers
+    new ServiceWorkerWebpackPlugin({
+      entry: app.workers.main,
+      filename: 'sw-main.js',
+    }),
   ],
 
   // Optimizations
