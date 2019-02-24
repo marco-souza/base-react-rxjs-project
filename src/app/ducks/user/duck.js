@@ -14,9 +14,9 @@ import { ofType, combineEpics } from 'redux-observable'
 // #region Consts (Initial state and Types)
 // Initial State - each duck defines it`s own particular state
 const INITIAL_STATE = {
-  name: null,
-  photo: null,
-  profile: null,
+  name: '',
+  photo: '',
+  profile: {},
 }
 
 // Types - actions that can be used to change the store
@@ -50,7 +50,7 @@ const fetchProfileEpic = (action$, state$) => action$.pipe(
   mergeMap(action =>
     ajax.getJSON(`https://api.github.com/users/${action.payload}`).pipe(
       map(response => actions.fetchProfileFufilled(response)),
-      catchError(() => of(actions.fetchProfileFufilled(null))),
+      catchError(() => of(actions.fetchProfileFufilled(''))),
     )
   ),
 )
