@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import runtime from 'serviceworker-webpack-plugin/lib/runtime'
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
 import { configureStore } from 'app/ducks'
 import Home from './screens/home'
 
@@ -12,6 +13,9 @@ const Bootstrap = (name = 'world') => {
   if ('serviceWorker' in navigator) {
     runtime.register()
   }
+
+  // Offline ruuntime
+  OfflinePluginRuntime.install()
 
   // Setup store
   const { store, persistor } = configureStore()

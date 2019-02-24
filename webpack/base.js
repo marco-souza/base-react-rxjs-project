@@ -6,6 +6,7 @@ import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
+import OfflinePlugin from 'offline-plugin'
 import WebpackPwaManifest from 'webpack-pwa-manifest'
 
 import manifest from '../src/app/manifest'
@@ -75,6 +76,8 @@ const config = {
     new webpack.ProvidePlugin({
       'React': 'react',
     }),
+    // Make Offline app
+    new OfflinePlugin(),
   ],
 
   // Optimizations
