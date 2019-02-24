@@ -10,29 +10,30 @@ import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
 
 const Component = (props) => (
   <Fragment>
-    <Grid container spacing={24}>
+    <Grid container spacing={16}>
 
       <Grid item xs={12}>
         <Paper>
           <Typography>
             Name {props.name} <br/>
-            Photo: {props.photo}
             <AccessAlarmIcon /><br/>
           </Typography>
 
-          <Input
-            value={props.name}
-            onChange={event => props.changeName(event.target.value)}
-          />
-          <Input
-            onChange={event => props.changePhoto(event.target.value)}
-          />
+          <div>
+            <Input
+              value={props.name}
+              onChange={event => props.changeName(event.target.value)}
+            />
+          </div>
           <Button
             onClick={() => props.fetchProfile(props.name)}
           >
             search
           </Button>
-          {JSON.stringify(props.profile)}
+
+          <Typography>
+            {JSON.stringify(props.profile, null, 4)}
+          </Typography>
 
         </Paper>
       </Grid>
