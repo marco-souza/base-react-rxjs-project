@@ -8,6 +8,7 @@ import TerserPlugin from 'terser-webpack-plugin'
 import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin'
 import OfflinePlugin from 'offline-plugin'
 import WebpackPwaManifest from 'webpack-pwa-manifest'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 import manifest from '../src/app/manifest'
 import * as filepaths from '../filepaths'
@@ -54,6 +55,9 @@ const config = {
 
   // Plugins
   plugins: [
+    new CleanWebpackPlugin([ app.dest ], {
+      root: app.root,
+    }),
     new ServiceWorkerWebpackPlugin({
       entry: app.workers.main,
     }),
@@ -64,12 +68,11 @@ const config = {
         { loader: 'eslint-loader' },
       ],
     }),
-    new CleanWebpackPlugin([ app.dest ], {
-      root: app.root,
-    }),
     new HtmlWebpackPlugin({
       template: app.html,
     }),
+    // Create favicon
+    new FaviconsWebpackPlugin(app.logo),
     // Copy Assets
     new CopyPlugin(app.copyAssets),
     // Avoid to import React to use JSX syntax
