@@ -22,8 +22,6 @@ Search page to GovPredict application test.
         - [ ] item: Range
         - [ ] item: Datetime
         - [ ] pagination: page list
-
-
 - [ ] Change logo
 - [ ] Change name
 - [ ] Change desc
