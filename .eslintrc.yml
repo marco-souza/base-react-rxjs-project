@@ -1,0 +1,43 @@
+
+env:
+  browser: true
+  node: true
+  es6: true
+
+extends:
+  - standard
+  - plugin:react/recommended
+
+parser: babel-eslint
+
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+
+plugins:
+  - react
+
+rules:
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  no-multiple-empty-lines:
+    - error
+    - max: 2
+      maxEOF: 1
+  comma-dangle:
+    - error
+    - always-multiline
+  react/react-in-jsx-scope:
+    - off   # No need, since we are using webpack to provide React
+
+settings:
+  react:
+    version: latest
