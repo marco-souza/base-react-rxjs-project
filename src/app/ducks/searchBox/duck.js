@@ -1,6 +1,4 @@
 // #region Imports
-import deburr from 'lodash/deburr'
-
 import {
   newState,
   actionBuilder,
@@ -85,7 +83,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     return newState(state, 'selectedItem', action.payload)
 
   case FETCH_SUGGESTIONS:
-    const inputValue = deburr(action.payload.trim()).toLowerCase()
+    const inputValue = state.inputValue.trim().toLowerCase()
     const inputLength = inputValue.length
 
     let count = 0

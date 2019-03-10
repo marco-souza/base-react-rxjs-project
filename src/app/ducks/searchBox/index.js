@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(actions.changeInputValue(
       event.target.value
     ))
+    dispatch(actions.fetchSuggestions())
   },
 
   handleChange (item) {
@@ -47,10 +48,6 @@ const mapDispatchToProps = (dispatch, props) => ({
     const selectedItem = [...props.selectedItem]
     selectedItem.splice(selectedItem.indexOf(item), 1)
     dispatch(actions.changeSelectedItem(selectedItem))
-  },
-
-  fetchSuggestions (value) {
-    dispatch(actions.fetchSuggestions(value))
   },
 
 })
