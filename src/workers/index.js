@@ -1,13 +1,16 @@
 const CACHE_NAME = 'cache-app-v1'
 const filesToCache = [
   '/',
-  '/index.html',
 ]
 
 const isResponseInvalid = response => (
   !response ||
   response.status !== 200 ||
   response.type !== 'basic'
+)
+
+const shouldCache = request => (
+  console.log(`shouldCache ${request}`)
 )
 
 
@@ -42,9 +45,12 @@ self.addEventListener('fetch', event => {
             }
 
             // Cache result
-            const responseToCache = response.clone()
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, responseToCache))
+
+            if (shouldCache(event.request.clone())) {
+              const responseToCache = response.clone()
+              caches.open(CACHE_NAME)
+                .then(cache => cache.put(event.request, responseToCache))
+            }
 
             return response
           })
