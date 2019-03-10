@@ -13,14 +13,8 @@ const Component = (props) => (
 
 // Define Props Types
 Component.propTypes = {
-  // ducks' data
-  name: PropTypes.string,
-  photo: PropTypes.string,
-  profile: PropTypes.object,
-  // ducks' actions
-  changeName: PropTypes.func.isRequired,
-  changePhoto: PropTypes.func.isRequired,
-  fetchProfile: PropTypes.func.isRequired,
+  // App style theme
+  theme: PropTypes.string, // TODO Add a duck to theme
 }
 
 
