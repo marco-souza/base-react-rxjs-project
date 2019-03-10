@@ -14,7 +14,8 @@
     "build:prod": "NODE_ENV=production webpack -f webpack.config.babel.js --progress -p",
     "build:dev": "NODE_ENV=development webpack -f webpack.config.babel.js --progress",
     "build": "yarn build:prod",
-    "update": "rm -rf node_modules yarn.lock; yarn"
+    "update": "rm -rf node_modules yarn.lock; yarn",
+    "test": "echo 'Success :)'"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
