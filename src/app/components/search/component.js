@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Sample from './sample'
+import MultiSelector from 'app/components/multiselector'
 
 
 const Component = ({
@@ -10,7 +10,7 @@ const Component = ({
   <Fragment>
 
     Search with
-    <Sample />
+    <MultiSelector />
   </Fragment>
 )
 
