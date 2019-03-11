@@ -1,8 +1,18 @@
 // #region Imports
 import {
+  tap,
+  map,
+  debounceTime,
+} from 'rxjs/operators'
+import {
+  ofType,
+  combineEpics,
+} from 'redux-observable'
+
+import {
   newState,
   actionBuilder,
-} from 'app/utils'
+} from 'app/utils/ducks'
 // #endregion
 
 
@@ -11,13 +21,18 @@ import {
 const INITIAL_STATE = {
   suggestions: [],
   inputValue: '',
-  selectedItem: '',
+  selectedItem: [],
 }
 
 // Types - actions that can be used to change the store
-const CHANGE_SELECTED_ITEM = 'CHANGE_SELECTED_ITEM'
+const KEY_DOWN = 'KEY_DOWN'
 const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE'
+const ADD_SELECTED_ITEM = 'ADD_SELECTED_ITEM'
+const DELETE_SELECTED_ITEM = 'DELETE_SELECTED_ITEM'
+
 const FETCH_SUGGESTIONS = 'FETCH_SUGGESTIONS'
+const FETCH_SUGGESTIONS_DONE = 'FETCH_SUGGESTIONS_DONE'
+const FETCH_SUGGESTIONS_ERROR = 'FETCH_SUGGESTIONS_ERROR'
 
 const GROUP_LIST = [
   { label: 'Afghanistan' },
@@ -61,50 +76,94 @@ const GROUP_LIST = [
 
 // #region Action Creators -  Functions to create actions that can be dispatched
 const actions = {
-  changeSelectedItem: actionBuilder(CHANGE_SELECTED_ITEM),
+  keyDown: actionBuilder(KEY_DOWN),
   changeInputValue: actionBuilder(CHANGE_INPUT_VALUE),
+  addSelectedItem: actionBuilder(ADD_SELECTED_ITEM),
+  deleteSelectedItem: actionBuilder(DELETE_SELECTED_ITEM),
   fetchSuggestions: actionBuilder(FETCH_SUGGESTIONS),
+  fetchSuggestionsDone: actionBuilder(FETCH_SUGGESTIONS_DONE),
+  fetchSuggestionsError: actionBuilder(FETCH_SUGGESTIONS_ERROR),
 }
 // #endregion
 
 
 // #region Epics - Async Handling
-const epics = {}
+const fetchSuggestions = (action$, state$) => action$.pipe(
+  ofType(FETCH_SUGGESTIONS),
+  debounceTime(300),
+  map(item => ({
+    value: state$.value.searchBox.inputValue,
+    selected: state$.value.searchBox.selectedItem,
+  })),
+  map(({ value, selected }) => GROUP_LIST
+    .filter(item =>
+      item.label.includes(value) &&
+      !selected.includes(item.label))
+  ),
+  tap(console.log),
+  map(suggestions => actions.fetchSuggestionsDone(suggestions)),
+)
+
+const epics = combineEpics(
+  fetchSuggestions,
+)
 // #endregion
 
 
 // #region Reducer - Functions to change store when receive an action
 const reducer = (state = INITIAL_STATE, action) => {
+  const {
+    inputValue,
+    selectedItem,
+  } = state
+
   switch (action.type) {
+  case KEY_DOWN:
+    const isBackspace = (
+      selectedItem.length &&
+      !inputValue.length &&
+      action.payload === 'Backspace'
+    )
+
+    return isBackspace
+      ? newState(
+        state, 'selectedItem',
+        selectedItem.slice(0, selectedItem.length - 1)
+      )
+      : state
+
   case CHANGE_INPUT_VALUE:
     return newState(state, 'inputValue', action.payload)
 
-  case CHANGE_SELECTED_ITEM:
-    return newState(state, 'selectedItem', action.payload)
+  case ADD_SELECTED_ITEM:
+    return selectedItem.includes(action.payload)
+      ? {
+        ...state,
+        inputValue: '',
+        selectedItem,
+      }
+      : {
+        ...state,
+        inputValue: '',
+        selectedItem: [
+          ...selectedItem,
+          action.payload,
+        ],
+        suggestions: [],
+      }
 
-  case FETCH_SUGGESTIONS:
-    const inputValue = state.inputValue.trim().toLowerCase()
-    const inputLength = inputValue.length
+  case DELETE_SELECTED_ITEM:
+    const newSelectedItem = [...state.selectedItem]
+    newSelectedItem.splice(newSelectedItem.indexOf(action.payload), 1)
+    return newState(state, 'selectedItem', newSelectedItem)
 
-    let count = 0
+  case FETCH_SUGGESTIONS_DONE:
+    console.log(action.payload)
+    return newState(state, 'suggestions', action.payload)
 
-    const newSuggestions = inputLength === 0
-      ? []
-      : GROUP_LIST.filter(suggestion => {
-        const keep = (
-          count < 5 &&
-          suggestion.label
-            .slice(0, inputLength).toLowerCase() === inputValue
-        )
-
-        if (keep) {
-          count += 1
-        }
-
-        return keep
-      })
-
-    return newState(state, 'suggestions', newSuggestions)
+  case FETCH_SUGGESTIONS_ERROR:
+    console.error(action.payload)
+    return newState(state, 'suggestions', [])
 
   default:
     return state

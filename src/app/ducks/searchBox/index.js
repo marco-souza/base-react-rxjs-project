@@ -21,12 +21,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, props) => ({
 
   handleKeyDown (event) {
-    const { inputValue, selectedItem } = props
-    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
-      dispatch(actions.changeSelectedItem(
-        selectedItem.slice(0, selectedItem.length - 1)
-      ))
-    }
+    dispatch(actions.keyDown(
+      event.target.key
+    ))
   },
 
   handleInputChange (event) {
@@ -37,17 +34,11 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 
   handleChange (item) {
-    const { selectedItem } = props
-    if (selectedItem.indexOf(item) === -1) {
-      dispatch(actions.changeSelectedItem([...selectedItem, item]))
-    }
-    dispatch(actions.changeInputValue(''))
+    dispatch(actions.addSelectedItem(item))
   },
 
   handleDelete (item) {
-    const selectedItem = [...props.selectedItem]
-    selectedItem.splice(selectedItem.indexOf(item), 1)
-    dispatch(actions.changeSelectedItem(selectedItem))
+    dispatch(actions.deleteSelectedItem(item))
   },
 
 })
