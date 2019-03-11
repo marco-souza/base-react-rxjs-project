@@ -23,7 +23,7 @@ const Component = ({
   <Downshift
     id="downshift-multiple"
     inputValue={inputValue}
-    onChange={this.handleChange}
+    onChange={handleChange}
     selectedItem={selectedItem}
   >
     {({
@@ -47,13 +47,14 @@ const Component = ({
                 tabIndex={-1}
                 label={item}
                 className={classes.chip}
-                onDelete={this.handleDelete(item)}
+                onDelete={() => handleDelete(item)}
               />
             )),
+            onChange: handleInputChange,
+            onKeyDown: handleKeyDown,
+            placeholder: 'Select multiple countries',
           })}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          label='Label'
+          label="Label"
         />
 
         {/* Suggestions */}
