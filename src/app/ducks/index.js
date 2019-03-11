@@ -4,9 +4,6 @@ import {
   compose,
   applyMiddleware,
 } from 'redux'
-// Redux Persist
-import { persistReducer, persistStore } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 // RxJS - Async actions
 import { createEpicMiddleware } from 'redux-observable'
 
@@ -21,19 +18,12 @@ import {
 
 // #region Create store
 export const configureStore = () => {
-  // Setup redux persisst
-  const persistCofig = {
-    key: 'root',
-    storage,
-  }
-  const persistedReducer = persistReducer(persistCofig, rootReducer)
-
   // Setup store
   const epicMiddleware = createEpicMiddleware()
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     // Add reducers
-    persistedReducer,
+    rootReducer,
     // Set initial state
     initialState,
     // Apply enhancements
@@ -41,11 +31,10 @@ export const configureStore = () => {
       applyMiddleware(epicMiddleware),
     ),
   )
-  const persistor = persistStore(store)
 
   // Run
   epicMiddleware.run(rootEpic)
 
-  return { store, persistor }
+  return { store }
 }
 // #endregion

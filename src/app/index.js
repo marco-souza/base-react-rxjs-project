@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
 import runtime from 'serviceworker-webpack-plugin/lib/runtime'
 import { configureStore } from 'app/ducks'
 import Home from './screens/home'
@@ -14,13 +13,11 @@ const Bootstrap = (name = 'world') => {
   }
 
   // Setup store
-  const { store, persistor } = configureStore()
+  const { store } = configureStore()
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Home />
-      </PersistGate>
+      <Home />
     </Provider>
   )
 }
