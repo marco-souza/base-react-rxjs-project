@@ -33,8 +33,8 @@ const Component = ({
 Component.propTypes = {
   key: PropTypes.number,
   itemProps: PropTypes.object,
-  suggestion: PropTypes.object,
-  selectedItem: PropTypes.object,
+  suggestion: PropTypes.array,
+  selectedItem: PropTypes.array,
   highlightedIndex: PropTypes.number,
 }
 

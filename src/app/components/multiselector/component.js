@@ -81,9 +81,9 @@ Component.propTypes = {
   // styles
   classes: PropTypes.object,
   // ducks' data
+  inputValue: PropTypes.string,
   suggestions: PropTypes.array,
-  inputValue: PropTypes.object,
-  selectedItem: PropTypes.object,
+  selectedItem: PropTypes.array,
   // ducks' actions
   handleKeyDown: PropTypes.func,
   handleInputChange: PropTypes.func,
