@@ -13,24 +13,34 @@ import {
 
 // Map user slice of Store to props
 const mapStateToProps = state => {
-  const { user } = state
-  return { ...user }
+  const { searchBox } = state
+  return { ...searchBox }
 }
 
 // Map actions to Props
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  changeName (data) {
-    dispatch(actions.changeName(data))
+const mapDispatchToProps = (dispatch, props) => ({
+
+  handleKeyDown (event) {
+    dispatch(actions.keyDown(
+      event.target.key
+    ))
   },
-  resetName () {
-    dispatch(actions.changeName(null))
+
+  handleInputChange (event) {
+    dispatch(actions.changeInputValue(
+      event.target.value
+    ))
+    dispatch(actions.fetchSuggestions())
   },
-  changePhoto (data) {
-    dispatch(actions.changePhoto(data))
+
+  handleChange (item) {
+    dispatch(actions.addSelectedItem(item))
   },
-  fetchProfile (data) {
-    dispatch(actions.fetchProfile(data))
+
+  handleDelete (item) {
+    dispatch(actions.deleteSelectedItem(item))
   },
+
 })
 // #endregion
 
