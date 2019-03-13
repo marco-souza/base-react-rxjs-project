@@ -1,32 +1,13 @@
-# govpredict-search-page
+# Event driven frontend
 
-Search page to GovPredict application test.
+A boilerplate project to be used as base for new projects.
 
-## TODO
+It's uses React, Material UI, Redux and RxJS.
 
-- [ ] Add **Tests**
-  - [ ] Jest
-  - [ ] RxJS tests
-- [ ] Pages
-  - [ ] Search page
-    - [ ] SearchComponent
-      - [ ] search **text** field
-      - [ ] search **group_list** field
-      - [ ] search datarange [optional]
-      - [ ] search social_media [optional]
-    - [ ] ResultsComponent
-      - [ ] results list
-        - [ ] item: Message
-        - [ ] item: User identity
-        - [ ] item: Social Network
-        - [ ] item: Range
-        - [ ] item: Datetime
-        - [ ] pagination: page list
-- [ ] Change logo
-- [ ] Change name
-- [ ] Change desc
-
-## Personalize
+## To Personalize app
 
 - change favicon
 - PWA
+  - change logo
+  - change name
+  - change desc
