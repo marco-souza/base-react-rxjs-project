@@ -35,7 +35,6 @@ const Component = ({
       highlightedIndex,
     }) => (
       <div className={classes.container}>
-        {highlightedIndex}
 
         {/* Data Input */}
         <Input
