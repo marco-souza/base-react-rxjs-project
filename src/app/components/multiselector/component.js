@@ -63,6 +63,7 @@ const Component = ({
             {suggestions.map((suggestion, index) => (
               <Suggestion
                 key={index}
+                index={index}
                 suggestion={suggestion}
                 selectedItem={selectedItem2}
                 highlightedIndex={highlightedIndex}

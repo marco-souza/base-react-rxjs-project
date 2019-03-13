@@ -4,13 +4,13 @@ import MenuItem from '@material-ui/core/MenuItem'
 
 
 const Component = ({
-  key,
+  index,
   itemProps,
   suggestion,
   selectedItem,
   highlightedIndex,
 }) => {
-  const isHighlighted = highlightedIndex === key
+  const isHighlighted = highlightedIndex === index
   const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1
 
   return (
@@ -31,10 +31,10 @@ const Component = ({
 
 // Define Props Types
 Component.propTypes = {
-  key: PropTypes.number,
+  index: PropTypes.number,
   itemProps: PropTypes.object,
-  suggestion: PropTypes.array,
-  selectedItem: PropTypes.array,
+  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+  selectedItem: PropTypes.string,
   highlightedIndex: PropTypes.number,
 }
 
