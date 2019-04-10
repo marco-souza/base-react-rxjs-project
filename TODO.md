@@ -15,4 +15,6 @@
   - [ ] Jest
   - [ ] RxJS tests
 - [ ] Add navigation
+- [ ] Add Docker
 - [x] Add favicon
+- [ ] REF: use Rollup over Webpack
